@@ -62,7 +62,33 @@ namespace DeepSpace
 
 
 		public int nivel(T dato) {
-			return 0;
+			if (getDatoRaiz().Equals(dato))
+			{
+				return 0;
+			}
+			else
+			{
+				//-1 si no esta el dato
+				int nivel = 1;
+				List<ArbolGeneral<T>> hijos = getHijos();
+				List<ArbolGeneral<T>> Siguiente_nivel_hijos;
+				do
+				{
+					Siguiente_nivel_hijos = new List<ArbolGeneral<T>>();
+					foreach (ArbolGeneral<T> Obtener_hijo in hijos)
+					{
+						if (Obtener_hijo.getDatoRaiz().Equals(dato)) { return nivel; }
+						foreach (ArbolGeneral<T> hijo in Obtener_hijo.getHijos())
+						{
+							Siguiente_nivel_hijos.Add(hijo);
+						}
+					}
+					hijos = Siguiente_nivel_hijos;
+					nivel++;
+				} while (Siguiente_nivel_hijos.Count > 0);
+				//-1 si no esta el dato
+				return -1;
+			}
 		}
 	
 	}
