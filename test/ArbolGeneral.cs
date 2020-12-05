@@ -34,10 +34,33 @@ namespace DeepSpace
 		}
 	
 		public int altura() {
-			return 0;
+			int altura = 0;
+			if (esHoja())
+			{
+				//retorna cero porque altura es cero
+				return altura;
+			}
+			else
+			{
+				int altura_del_hijo;
+				//tiene hijo
+				foreach (ArbolGeneral<T> recorrehijo in getHijos())
+				{
+					altura_del_hijo = recorrehijo.altura();
+					if (altura < altura_del_hijo)
+					{
+						altura = altura_del_hijo;
+					}
+				}
+
+				return altura + 1;
+				//return altura;
+			}
+
+
 		}
-	
-		
+
+
 		public int nivel(T dato) {
 			return 0;
 		}
