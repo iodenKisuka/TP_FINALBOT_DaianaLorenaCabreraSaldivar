@@ -10,46 +10,14 @@ namespace DeepSpace
 		
 		public String Consulta1( ArbolGeneral<Planeta> arbol)
 		{
-			string texto = "";
-			int distancia = 0;
-            
-            if (arbol.getDatoRaiz().EsPlanetaDeLaIA())
+			int distancia = Distancia_Raiz(arbol);
+
+			if (distancia<1)
             {
 				return "El bot Esta en la Raiz";
             }
-            else
-            {
-				ArbolGeneral<Planeta> subarbol= arbol;
-				List<ArbolGeneral<Planeta>> Lista_hijoSubArbol = new List<ArbolGeneral<Planeta>>();
-				//dejara de ejecutarse cuando encuentre un planeta ocuado por la IA
-
-				/**while (!subarbol.getDatoRaiz().EsPlanetaDeLaIA())
-                {
-					distancia++;
-					foreach(ArbolGeneral<Planeta> arbolHijo in subarbol.getHijos())
-                    {
-                        if (subarbol.getDatoRaiz().EsPlanetaDeLaIA())
-                        {
-							return distancia+"";
-                            //o break
-                        }
-                        else
-                        {
-							
-
-
-                        }
-
-                    }
-				} **/
-
-				distancia = Distancia(arbol);
-			}
-			/*Calcula y retorna un texto con la distancia que existe entre la raíz y el nodo del árbol que es enviado como
-parámetro que contiene el planeta más cercano perteneciente al Bot."*/
-			//arbol.nivel(arbol);
-			return "La distancia a la Raiz es " + distancia;
-			//return "Implementar1";
+			return "La distancia que existe entre el bot a la Raiz es " + distancia;
+			
 		}
 
 
@@ -101,7 +69,7 @@ parámetro que contiene el planeta más cercano perteneciente al Bot."*/
 
 
 
-		public int Distancia(ArbolGeneral<Planeta> arbol)
+		public int Distancia_Raiz(ArbolGeneral<Planeta> arbol)
 		{
 			if (arbol.getDatoRaiz().EsPlanetaDeLaIA())
 			{
