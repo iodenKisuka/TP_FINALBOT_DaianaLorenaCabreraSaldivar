@@ -11,11 +11,45 @@ namespace DeepSpace
 		public String Consulta1( ArbolGeneral<Planeta> arbol)
 		{
 			string texto = "";
+			int distancia = 0;
+            
+            if (arbol.getDatoRaiz().EsPlanetaDeLaIA())
+            {
+				return "El bot Esta en la Raiz";
+            }
+            else
+            {
+				ArbolGeneral<Planeta> subarbol= arbol;
+				List<ArbolGeneral<Planeta>> Lista_hijoSubArbol = new List<ArbolGeneral<Planeta>>();
+				//dejara de ejecutarse cuando encuentre un planeta ocuado por la IA
+
+				/**while (!subarbol.getDatoRaiz().EsPlanetaDeLaIA())
+                {
+					distancia++;
+					foreach(ArbolGeneral<Planeta> arbolHijo in subarbol.getHijos())
+                    {
+                        if (subarbol.getDatoRaiz().EsPlanetaDeLaIA())
+                        {
+							return distancia+"";
+                            //o break
+                        }
+                        else
+                        {
+							
+
+
+                        }
+
+                    }
+				} **/
+
+				distancia = Distancia(arbol);
+			}
 			/*Calcula y retorna un texto con la distancia que existe entre la raíz y el nodo del árbol que es enviado como
 parámetro que contiene el planeta más cercano perteneciente al Bot."*/
 			//arbol.nivel(arbol);
-			
-			return "Implementar1";
+			return "La distancia a la Raiz es " + distancia;
+			//return "Implementar1";
 		}
 
 
@@ -64,5 +98,41 @@ parámetro que contiene el planeta más cercano perteneciente al Bot."*/
 			
 			return null;
 		}
+
+
+
+		public int Distancia(ArbolGeneral<Planeta> arbol)
+		{
+			if (arbol.getDatoRaiz().EsPlanetaDeLaIA())
+			{
+				return 0;
+			}
+			else
+			{
+				//-1 si no esta el dato
+				int nivel = 1;
+				List<ArbolGeneral<Planeta>> hijos = arbol.getHijos();
+				List<ArbolGeneral<Planeta>> Siguiente_nivel_hijos;
+				do
+				{
+					Siguiente_nivel_hijos = new List<ArbolGeneral<Planeta>>();
+					foreach (ArbolGeneral<Planeta> Obtener_hijo in hijos)
+					{
+						if (Obtener_hijo.getDatoRaiz().EsPlanetaDeLaIA()) { return nivel; }
+						foreach (ArbolGeneral<Planeta> hijo in Obtener_hijo.getHijos())
+						{
+							Siguiente_nivel_hijos.Add(hijo);
+						}
+					}
+					hijos = Siguiente_nivel_hijos;
+					nivel++;
+				} while (Siguiente_nivel_hijos.Count > 0);
+				//-1 si no esta el dato
+				return -1;
+			}
+		}
+
+		
+
 	}
 }
