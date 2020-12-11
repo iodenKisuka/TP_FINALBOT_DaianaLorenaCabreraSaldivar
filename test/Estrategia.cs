@@ -117,7 +117,9 @@ namespace DeepSpace
             ArbolGeneral<Planeta> nodoPadreIA = raiz;
 
             int nivel = 1;
-            List<ArbolGeneral<Planeta>> Lista_hijos = arbol.getHijos();
+            List<ArbolGeneral<Planeta>> Lista_hijos = new List<ArbolGeneral<Planeta>>();
+            Lista_hijos.Add(arbol);
+                //arbol.getHijos();
             List<ArbolGeneral<Planeta>> Siguiente_nivel_hijos;
             do
             {
@@ -132,14 +134,14 @@ namespace DeepSpace
                     //obtengo los hijos del nodo obtener hijos y lo agrego a la lista de nodos que tiene siguiente nivel
                     foreach (ArbolGeneral<Planeta> hijo in Obtener_hijo.getHijos())
                     {
-                        if (Obtener_hijo.getDatoRaiz().EsPlanetaDeLaIA())
+                        if (hijo.getDatoRaiz().EsPlanetaDeLaIA())
                         {
-                            nodoIA = Obtener_hijo;
+                            nodoIA = hijo;
                             nodoPadreIA = nodopadre;
                         }
-                        if (Obtener_hijo.getDatoRaiz().EsPlanetaDelJugador())
+                        if (hijo.getDatoRaiz().EsPlanetaDelJugador())
                         {
-                            nodoUsuario = Obtener_hijo;
+                            nodoUsuario = hijo;
                         }
                         Siguiente_nivel_hijos.Add(hijo);
                     }
