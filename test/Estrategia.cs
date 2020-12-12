@@ -10,7 +10,7 @@ namespace DeepSpace
 
         public String Consulta1(ArbolGeneral<Planeta> arbol)
         {
-            int distancia = Distancia_Nodo(arbol);
+            int distancia = Distancia_Raiz(arbol);
 
             if (distancia < 1)
             {
@@ -153,14 +153,14 @@ namespace DeepSpace
 
             //Movimiento(Planeta origen, Planeta destino)
             Movimiento mover = new Movimiento(nodoIA.getDatoRaiz(), nodoPadreIA.getDatoRaiz());
-            //Movimiento mover2 = new Movimiento(nodoPadreIA.getDatoRaiz(), nodoIA.getDatoRaiz());
+            
             return mover;
-            //return null;
+            
         }
 
 
 
-        public int Distancia_Nodo(ArbolGeneral<Planeta> arbol)
+        public int Distancia_Raiz(ArbolGeneral<Planeta> arbol)
         {
             if (arbol.getDatoRaiz().EsPlanetaDeLaIA())
             {
