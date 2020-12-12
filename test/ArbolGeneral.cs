@@ -94,14 +94,14 @@ namespace DeepSpace
 
 		//Esta Funcion lo agregue porque creo que la necesito es una lista preorden
 		private List<ArbolGeneral<T>> listaPruebaPre = new List<ArbolGeneral<T>>();
-		public List<ArbolGeneral<T>> CadaArboltieneSupropiopreOrden()
+		public List<ArbolGeneral<T>> ListaPreOrden()
 		{
 
 			listaPruebaPre.Add(this);
 
 			foreach (ArbolGeneral<T> hijo in this.hijos)
 			{
-				List<ArbolGeneral<T>> listaPreordenHijo = hijo.CadaArboltieneSupropiopreOrden();
+				List<ArbolGeneral<T>> listaPreordenHijo = hijo.ListaPreOrden();
 				foreach (ArbolGeneral<T> agregarALista in listaPreordenHijo)
 				{
 					
